@@ -2,36 +2,48 @@ import { sendTelegram } from "./telegram.js";
 
 export default {
 
-    async fetch(request, env) {
+  async fetch(request, env) {
 
-        await sendTelegram(
+    try {
 
-            env,
+      await sendTelegram(
 
-            "✅ Apple Price Monitor 已启动"
+        env,
 
-        );
+        "✅ Apple Price Monitor 测试成功！\nGitHub 自动部署正常。"
 
-        return new Response("OK");
+      );
 
-    },
+      return new Response("Telegram Test OK");
 
-    async scheduled(event, env, ctx) {
+    } catch (e) {
 
-        ctx.waitUntil(
+      return new Response(
 
-            sendTelegram(
+        "Telegram Error:\n" + e.message,
 
-                env,
+        { status: 500 }
 
-                "⏰ 定时任务运行：" +
-
-                new Date().toLocaleString("zh-CN")
-
-            )
-
-        );
+      );
 
     }
 
-}
+  },
+
+  async scheduled(event, env, ctx) {
+
+    ctx.waitUntil(
+
+      sendTelegram(
+
+        env,
+
+        "⏰ 定时任务运行正常：" + new Date().toISOString()
+
+      )
+
+    );
+
+  }
+
+};
