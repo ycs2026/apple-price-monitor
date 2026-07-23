@@ -1,0 +1,19 @@
+{
+
+  "name": "apple-price-monitor",
+
+  "main": "src/index.js",
+
+  "compatibility_date": "2026-07-21",
+
+  "triggers": {
+
+    "crons": [
+
+      "*/5 * * * *"
+
+    ]
+
+  }
+
+}
