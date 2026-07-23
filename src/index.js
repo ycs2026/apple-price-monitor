@@ -1,36 +1,30 @@
+import { sendTelegram } from "./telegram.js";
+
 export default {
 
   async fetch(request, env) {
 
-    return new Response(
+    try {
 
-      JSON.stringify({
+      await sendTelegram(
 
-        hasToken: !!env.TELEGRAM_BOT_TOKEN,
+        env,
 
-        tokenPrefix: env.TELEGRAM_BOT_TOKEN
+        "🎉 Apple Price Monitor 已成功连接 Telegram！"
 
-          ? env.TELEGRAM_BOT_TOKEN.substring(0, 10)
+      );
 
-          : null,
+      return new Response("Telegram OK");
 
-        hasChatId: !!env.TELEGRAM_CHAT_ID,
+    } catch (e) {
 
-        chatId: env.TELEGRAM_CHAT_ID
+      return new Response("Telegram Error:\n" + e.message, {
 
-      }, null, 2),
+        status: 500
 
-      {
+      });
 
-        headers: {
-
-          "content-type": "application/json"
-
-        }
-
-      }
-
-    );
+    }
 
   }
 
