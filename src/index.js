@@ -2,19 +2,19 @@ import { searchJD } from "./jd/search.js";
 
 export default {
 
-    async fetch() {
+    async fetch(){
 
-        const html = await searchJD();
+        const ids=await searchJD();
 
         return new Response(
 
-            html.substring(0,1000),
+            JSON.stringify(ids,null,2),
 
             {
 
                 headers:{
 
-                    "content-type":"text/plain"
+                    "content-type":"application/json"
 
                 }
 
