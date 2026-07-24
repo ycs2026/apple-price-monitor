@@ -2,26 +2,20 @@ import { searchJD } from "./jd/search.js";
 
 export default {
 
-    async fetch(){
+  async fetch() {
 
-        const ids=await searchJD();
+    const html = await searchJD();
 
-        return new Response(
+    return new Response(html, {
 
-            JSON.stringify(ids,null,2),
+      headers: {
 
-            {
+        "content-type": "text/html; charset=utf-8"
 
-                headers:{
+      }
 
-                    "content-type":"application/json"
+    });
 
-                }
-
-            }
-
-        );
-
-    }
+  }
 
 }
