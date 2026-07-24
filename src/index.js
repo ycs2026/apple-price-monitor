@@ -1,24 +1,24 @@
 import { sendTelegram } from "./telegram.js";
 
-import { getAllIPhones } from "./apple.js";
+import { discoverIPhones } from "./apple/discover.js";
 
 export default {
 
   async fetch(request, env) {
 
-    const phones = await getAllIPhones();
+    const models = await discoverIPhones();
 
-    let text = "🍎 Apple 官网当前监控机型\n\n";
+    let msg = "🍎 Apple 官网发现机型\n\n";
 
-    for (const phone of phones) {
+    for (const m of models) {
 
-      text += "• " + phone.name + "\n";
+      msg += `• ${m}\n`;
 
     }
 
-    await sendTelegram(env, text);
+    await sendTelegram(env, msg);
 
-    return new Response(text);
+    return new Response(msg);
 
   }
 
