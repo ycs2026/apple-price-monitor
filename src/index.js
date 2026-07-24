@@ -1,31 +1,33 @@
-import { PRODUCTS } from "./config.js";
+import { sendTelegram } from "./telegram.js";
 
-import { getJDPrice } from "./jd/price.js";
+async function main() {
 
-export default {
+  const env = {
 
-    async fetch() {
+    TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
 
-        const result = [];
+    TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID,
 
-        for (const p of PRODUCTS) {
+  };
 
-            const info = await getJDPrice(p.jdShare);
+  await sendTelegram(
 
-            result.push({
+    env,
 
-                name: p.name,
+    `✅ Apple Price Monitor 启动成功\n\n时间：${new Date().toLocaleString("zh-CN", {
 
-                url: info.finalUrl,
+      timeZone: "Asia/Shanghai",
 
-                status: info.status
+    })}`
 
-            });
-
-        }
-
-        return Response.json(result);
-
-    }
+  );
 
 }
+
+main().catch((err) => {
+
+  console.error(err);
+
+  process.exit(1);
+
+});
