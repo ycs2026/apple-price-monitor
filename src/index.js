@@ -1,30 +1,24 @@
 import { sendTelegram } from "./telegram.js";
 
+import { getAllIPhones } from "./apple.js";
+
 export default {
 
   async fetch(request, env) {
 
-    try {
+    const phones = await getAllIPhones();
 
-      await sendTelegram(
+    let text = "🍎 Apple 官网当前监控机型\n\n";
 
-        env,
+    for (const phone of phones) {
 
-        "🎉 Apple Price Monitor 已成功连接 Telegram！"
-
-      );
-
-      return new Response("Telegram OK");
-
-    } catch (e) {
-
-      return new Response("Telegram Error:\n" + e.message, {
-
-        status: 500
-
-      });
+      text += "• " + phone.name + "\n";
 
     }
+
+    await sendTelegram(env, text);
+
+    return new Response(text);
 
   }
 
