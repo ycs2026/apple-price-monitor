@@ -1,24 +1,26 @@
-import { sendTelegram } from "./telegram.js";
-
 import { discoverIPhones } from "./apple/discover.js";
 
 export default {
 
-  async fetch(request, env) {
+  async fetch() {
 
     const models = await discoverIPhones();
 
-    let msg = "🍎 Apple 官网发现机型\n\n";
+    return new Response(
 
-    for (const m of models) {
+      JSON.stringify(models, null, 2),
 
-      msg += `• ${m}\n`;
+      {
 
-    }
+        headers: {
 
-    await sendTelegram(env, msg);
+          "content-type": "application/json"
 
-    return new Response(msg);
+        }
+
+      }
+
+    );
 
   }
 
