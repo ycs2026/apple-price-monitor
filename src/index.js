@@ -1,21 +1,31 @@
-import { searchJD } from "./jd/search.js";
+import { PRODUCTS } from "./config.js";
+
+import { getJDPrice } from "./jd/price.js";
 
 export default {
 
-  async fetch() {
+    async fetch() {
 
-    const html = await searchJD();
+        const result = [];
 
-    return new Response(html, {
+        for (const p of PRODUCTS) {
 
-      headers: {
+            const info = await getJDPrice(p.jdShare);
 
-        "content-type": "text/html; charset=utf-8"
+            result.push({
 
-      }
+                name: p.name,
 
-    });
+                url: info.finalUrl,
 
-  }
+                status: info.status
+
+            });
+
+        }
+
+        return Response.json(result);
+
+    }
 
 }
