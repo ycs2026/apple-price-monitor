@@ -1,27 +1,27 @@
-import { discoverIPhones } from "./apple/discover.js";
+import { searchJD } from "./jd/search.js";
 
 export default {
 
-  async fetch() {
+    async fetch() {
 
-    const models = await discoverIPhones();
+        const html = await searchJD();
 
-    return new Response(
+        return new Response(
 
-      JSON.stringify(models, null, 2),
+            html.substring(0,1000),
 
-      {
+            {
 
-        headers: {
+                headers:{
 
-          "content-type": "application/json"
+                    "content-type":"text/plain"
 
-        }
+                }
 
-      }
+            }
 
-    );
+        );
 
-  }
+    }
 
-};
+}
