@@ -1,30 +1,24 @@
 import { sendTelegram } from "./telegram.js";
 
+import { getPrices } from "./jd/price.js";
+
 async function main() {
 
   const env = {
 
     TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
 
-    TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID,
+    TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID
 
   };
 
-  await sendTelegram(
+  const result = await getPrices();
 
-    env,
-
-    `✅ Apple Price Monitor 启动成功\n\n时间：${new Date().toLocaleString("zh-CN", {
-
-      timeZone: "Asia/Shanghai",
-
-    })}`
-
-  );
+  await sendTelegram(env, result);
 
 }
 
-main().catch((err) => {
+main().catch(err => {
 
   console.error(err);
 
