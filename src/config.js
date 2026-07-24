@@ -2,73 +2,71 @@ export const PRODUCTS = [
 
   {
 
-    id: "iphone17pro128",
-
-    name: "iPhone 17 Pro 128GB",
-
-    jd: "",
-
-    apple: ""
-
-  },
-
-  {
-
-    id: "iphone17pro256",
-
-    name: "iPhone 17 Pro 256GB",
-
-    jd: "",
-
-    apple: ""
-
-  },
-
-  {
-
-    id: "iphone17promax256",
-
-    name: "iPhone 17 Pro Max 256GB",
-
-    jd: "",
-
-    apple: ""
-
-  },
-
-  {
-
-    id: "iphone17air256",
-
-    name: "iPhone Air 256GB",
-
-    jd: "",
-
-    apple: ""
-
-  },
-
-  {
-
-    id: "iphone17256",
+    id: "iphone17-256",
 
     name: "iPhone 17 256GB",
 
-    jd: "",
-
-    apple: ""
+    jdShare: "https://3.cn/2WFU4d-R"
 
   },
 
   {
 
-    id: "iphone17e128",
+    id: "iphone17pro-256",
 
-    name: "iPhone 17e 128GB",
+    name: "iPhone 17 Pro 256GB",
 
-    jd: "",
+    jdShare: "https://3.cn/2WFUf-n4"
 
-    apple: ""
+  },
+
+  {
+
+    id: "iphone17promax-256",
+
+    name: "iPhone 17 Pro Max 256GB",
+
+    jdShare: "https://3.cn/2WFU-mqM"
+
+  },
+
+  {
+
+    id: "iphone16-256",
+
+    name: "iPhone 16 256GB",
+
+    jdShare: "https://3.cn/2WF-UHXN"
+
+  },
+
+  {
+
+    id: "iphone16pro-128",
+
+    name: "iPhone 16 Pro 128GB",
+
+    jdShare: "https://3.cn/2WF-US5H"
+
+  },
+
+  {
+
+    id: "iphone16plus-256",
+
+    name: "iPhone 16 Plus 256GB",
+
+    jdShare: "https://3.cn/-2WFVAg5"
+
+  },
+
+  {
+
+    id: "iphoneair-256",
+
+    name: "iPhone Air 256GB",
+
+    jdShare: "https://3.cn/2-WFVOh6"
 
   }
 
